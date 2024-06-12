@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 
 // import Footer from "@/components/footer";
-import { NavBar } from "@/components/navbar";
+// import { NavBar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="flex min-h-screen flex-col bg-background font-sans antialiased text-foreground">
-            <NavBar />
+            {/* <NavBar /> */}
             {children}
             {/* <Footer /> */}
           </main>
