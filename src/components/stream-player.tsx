@@ -19,13 +19,13 @@ import { Icons } from "./ui/icons";
 function toString(connectionState: string) {
   switch (connectionState) {
     case "connected":
-      return "Connected!";
+      return "Đã kết nối!";
     case "connecting":
-      return "Connecting...";
+      return "Đang kết nối...";
     case "disconnected":
-      return "Disconnected";
+      return "Mất kết nối!";
     case "reconnecting":
-      return "Reconnecting";
+      return "Đang kết nối lại!";
     default:
       return "Unknown";
   }
@@ -46,7 +46,7 @@ export default function StreamPlayerWrapper({ streamerIdentity }: Props) {
     return (
       <div className="grid aspect-video items-center justify-center bg-black text-sm uppercase text-white">
         {connectionState === ConnectionState.Connected
-          ? "Stream is offline"
+          ? "Stream đã bị tắt"
           : toString(connectionState)}
       </div>
     );
@@ -161,7 +161,7 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
           </div>
         </div>
         <StartAudio
-          label="Click to allow audio playback"
+          label="Bấm để xem trực tiếp"
           className="absolute top-0 h-full w-full bg-black bg-opacity-75 text-white"
         />
       </div>

@@ -68,7 +68,7 @@ export default function WatchChannel({ slug }: { slug: string }) {
     >
       {/* <WatchingAsBar viewerName={viewerName} /> */}
       <div className="flex h-full flex-1">
-        <div className="flex-1 flex-col container">
+        <div className="flex-1 flex-col">
           <StreamPlayer streamerIdentity={slug} />
           {/* <ChannelInfo streamerIdentity={slug} viewerIdentity={viewerName} /> */}
         </div>
