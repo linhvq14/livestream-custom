@@ -2,7 +2,7 @@ import GetStartedForm from "@/components/get-started";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "LiveKit Cast",
+  title: "Cast",
 };
 
 export default function IndexPage() {
