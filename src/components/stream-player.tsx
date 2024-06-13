@@ -95,6 +95,7 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
   );
 
   const onToggleMute = useCallback(() => {
+    console.log("muted")
     setMuted(!muted);
     setVolume(muted ? 50 : 0);
     if (videoEl?.current) {
