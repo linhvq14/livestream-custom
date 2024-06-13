@@ -71,6 +71,7 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(50);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const videoEl = useRef<HTMLVideoElement>(null);
   const playerEl = useRef<HTMLDivElement>(null);
 
@@ -95,7 +96,6 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
   );
 
   const onToggleMute = useCallback(() => {
-    console.log("muted")
     setMuted(!muted);
     setVolume(muted ? 50 : 0);
     if (videoEl?.current) {
@@ -113,6 +113,19 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
       setIsFullScreen(true);
     }
   }, [isFullScreen]);
+
+  const onTogglePlay = useCallback(() => {
+    console.log("Toggle play/pause clicked");
+    if (videoEl.current) {
+      if (isPlaying) {
+        videoEl.current.pause();
+      } else {
+        videoEl.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  }, [isPlaying]);
+  
 
   return (
     <TooltipProvider delayDuration={300}>
@@ -141,6 +154,20 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
               />
             </div>
             <div className="flex items-center justify-center gap-4">
+            <Tooltip>
+              <TooltipContent>
+                  {isPlaying ? "Pause" : "Play"}
+                </TooltipContent>
+                <TooltipTrigger>
+                  <div className="text-white" onClick={onTogglePlay}>
+                    {isPlaying ? (
+                      <Icons.pause className="h-5 w-5 hover:scale-110 hover:transition-all" />
+                    ) : (
+                      <Icons.play className="h-5 w-5 hover:scale-110 hover:transition-all" />
+                    )}
+                  </div>
+                </TooltipTrigger>
+              </Tooltip>
               <Tooltip>
                 <TooltipTrigger>
                   <div className="text-white" onClick={onFullScreen}>
@@ -155,9 +182,6 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
                   {isFullScreen ? "Exit fullscreen" : "Enter fullscreen"}
                 </TooltipContent>
               </Tooltip>
-              {/* <Link href="https://livekit.io/" target="_blank" rel="noreferrer">
-                <Icons.livekit className="w-16 text-white hover:text-rose-400 hover:transition-all" />
-              </Link> */}
             </div>
           </div>
         </div>
