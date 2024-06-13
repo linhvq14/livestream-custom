@@ -115,7 +115,6 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
   }, [isFullScreen]);
 
   const onTogglePlay = useCallback(() => {
-    console.log("Toggle play/pause clicked");
     if (videoEl.current) {
       if (isPlaying) {
         videoEl.current.pause();
@@ -125,7 +124,6 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
       setIsPlaying(!isPlaying);
     }
   }, [isPlaying]);
-  
 
   return (
     <TooltipProvider delayDuration={300}>
@@ -154,20 +152,6 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
               />
             </div>
             <div className="flex items-center justify-center gap-4">
-            <Tooltip>
-              <TooltipContent>
-                  {isPlaying ? "Pause" : "Play"}
-                </TooltipContent>
-                <TooltipTrigger>
-                  <div className="text-white" onClick={onTogglePlay}>
-                    {isPlaying ? (
-                      <Icons.pause className="h-5 w-5 hover:scale-110 hover:transition-all" />
-                    ) : (
-                      <Icons.play className="h-5 w-5 hover:scale-110 hover:transition-all" />
-                    )}
-                  </div>
-                </TooltipTrigger>
-              </Tooltip>
               <Tooltip>
                 <TooltipTrigger>
                   <div className="text-white" onClick={onFullScreen}>
@@ -180,6 +164,20 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
                 </TooltipTrigger>
                 <TooltipContent>
                   {isFullScreen ? "Exit fullscreen" : "Enter fullscreen"}
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger>
+                  <div className="text-white" onClick={onTogglePlay}>
+                    {isPlaying ? (
+                      <Icons.pause className="h-5 w-5 hover:scale-110 hover:transition-all" />
+                    ) : (
+                      <Icons.play className="h-5 w-5 hover:scale-110 hover:transition-all" />
+                    )}
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {isPlaying ? "Pause" : "Play"}
                 </TooltipContent>
               </Tooltip>
             </div>
