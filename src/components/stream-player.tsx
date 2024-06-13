@@ -117,9 +117,9 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
   const onTogglePlay = useCallback(() => {
     if (videoEl.current) {
       if (isPlaying) {
-        videoEl.current.pause();
+        void videoEl.current.pause(); // Ignore the returned value explicitly
       } else {
-        videoEl.current.play();
+        void videoEl.current.play(); // Ignore the returned value explicitly
       }
       setIsPlaying(!isPlaying);
     }
